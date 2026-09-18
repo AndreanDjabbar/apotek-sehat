@@ -31,6 +31,5 @@ model User {
 enum Role {
   DEVELOPER
   ADMIN
-  CASHIER
-  PHARMACIST
+  STAFF
 }
