@@ -10,7 +10,8 @@
     "prisma-migrate": "npx prisma migrate dev",
     "prisma-reset": "npx prisma migrate reset --force",
     "prisma-generate": "npx prisma generate",
-    "prisma-pull": "npx prisma db pull"
+    "prisma-pull": "npx prisma db pull",
+    "generate-seed": "node src/seed.js"
   },
   "author": "",
   "license": "ISC",
