@@ -22,8 +22,8 @@ export const registerController = async (req, res) => {
 };
   
 export const loginController = async (req, res) => {
-  const { email, password } = req.body;
-  const result = await AuthService.login(email, password);
+  const { username, password } = req.body;
+  const result = await AuthService.login(username, password);
   const token = result.token;
   
   res.cookie("token", token, {

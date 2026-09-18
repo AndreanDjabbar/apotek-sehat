@@ -1,13 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWT_EXPIRES_IN } from './env.util.js';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../../keys/private.key'), 'utf8');
-const PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../keys/public.key'), 'utf8');
+import { JWT_EXPIRES_IN, JWT_SECRET } from './env.util.js';
 
 export const generateJWTToken = ({
     userID,
@@ -20,8 +12,8 @@ export const generateJWTToken = ({
         role,
     };
 
-    return jwt.sign(payload, PRIVATE_KEY, {
-        algorithm: 'RS256',
+    return jwt.sign(payload, JWT_SECRET, {
+        algorithm: 'HS256',
         expiresIn: JWT_EXPIRES_IN,
     });
 };

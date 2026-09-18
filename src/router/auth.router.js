@@ -1,11 +1,9 @@
 import express from "express";
 import { 
-    registerController,
     loginController,
 } from "../controller/auth.controller.js";
 
 import { 
-    registerSchema,
     loginSchema,
 } from "../validation/auth.validation.js";
 

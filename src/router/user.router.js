@@ -7,9 +7,7 @@ import catchAsync from "../middleware/catchAsync.middleware.js";
 import timeout from "connect-timeout";
 
 import { 
-  createStaffSchema ,
-  createTenantAdminSchema,
-  updateStaffSchema
+  createStaffSchema,
 } from "../validation/user.validation.js";
 
 const router = express.Router();
@@ -27,21 +25,6 @@ router.post(
   validateSchema(createStaffSchema),
   authorizedRoles("ADMIN", "Developer"), 
   catchAsync(UserController.createStaffController)
-);
-router.delete(
-  "/staff/:id",
-  timeout('5s'),
-  validateToken,
-  authorizedRoles("ADMIN", "Developer"), 
-  catchAsync(UserController.deleteStaffController)
-);
-router.put(
-  "/staff/:id",
-  timeout('5s'),
-  validateToken, 
-  validateSchema(updateStaffSchema),
-  authorizedRoles("ADMIN", "Developer"), 
-  catchAsync(UserController.updateStaffController)
 );
 
 export default router;
