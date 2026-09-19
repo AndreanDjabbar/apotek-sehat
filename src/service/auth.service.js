@@ -25,6 +25,7 @@ class AuthService {
 
         const tokenJWT = generateJWTToken({
             userID: user.id,
+            role: user.role,
         });
 
         const expiresAt = new Date();

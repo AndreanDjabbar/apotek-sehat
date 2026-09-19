@@ -32,11 +32,11 @@ export const createStaffSchema = Joi.object({
         'string.max': 'Password should have a maximum length of {#limit}',
         'any.required': 'Password is required',
     }),
-    role: Joi.string().valid("CASHIER", "PHARMACIST").required()
+    role: Joi.string().valid("STAFF").required()
     .messages({
         'string.base': 'Role must be a string',
         'string.empty': 'Role is required',
-        'any.only': 'Role must be either CASHIER or PHARMACIST',
+        'any.only': 'Role must be one of [STAFF]',
         'any.required': 'Role is required',
     }),
 }); 

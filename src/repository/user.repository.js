@@ -10,6 +10,32 @@ class UserRepository {
     });
   }
 
+  static async getByEmail(email) {
+    return await prisma.user.findUnique({
+      where: { email },
+    });
+  }
+
+  static async createUser({ 
+    name, 
+    username, 
+    email, 
+    password, 
+    role,
+    isVerified = true
+  }) {
+    return await prisma.user.create({
+      data: {
+        name,
+        username,
+        email,
+        password,
+        role,
+        is_verified: isVerified,
+      },
+    });
+  }
+
   static async generateSeed() {
     const rawpassword = "admin123";
     const hashedPassword = await bcrypt.hash(rawpassword, 10);

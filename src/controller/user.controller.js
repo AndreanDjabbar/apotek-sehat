@@ -20,15 +20,21 @@ export const getMyUserDataController = async (req, res) => {
     );
 };
 
-export const createTenantController = async (req, res) => {
-    const result = await UserService.createTenant(req.body);
-    return responseSuccess(res, 201, "Tenant created successfully", "data", result);
-};
-
 export const createStaffController = async (req, res) => {
-    const { name, email, password, role, restaurantId } = req.body;
-    const { userID } = req.user;
-    const result = await UserService.createStaff({ name, email, password, role, restaurantId, currentUserID: userID });
+    const { 
+        name, 
+        username,
+        email, 
+        password, 
+        role,  
+    } = req.body;
+    const result = await UserService.createStaff({ 
+        name, 
+        username, 
+        email, 
+        password, 
+        role,  
+    });
     return responseSuccess(res, 201, "User created successfully", "data", result);
 }
 
