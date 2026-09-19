@@ -115,8 +115,6 @@ export const ForgotPasswordResetController = async (req, res) => {
 };
 
 export const logoutController = async (req, res) => {
-  const token = req.cookies.token;
-  await AuthService.logout(token);
   res.clearCookie("token", {
     httpOnly: true,
     secure: NODE_ENV === "production",

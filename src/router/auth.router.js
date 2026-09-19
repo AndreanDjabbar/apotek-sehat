@@ -1,6 +1,7 @@
 import express from "express";
 import { 
     loginController,
+    logoutController
 } from "../controller/auth.controller.js";
 
 import { 
@@ -20,4 +21,10 @@ router.post(
     validateSchema(loginSchema),
     catchAsync(loginController)
 );
+router.post(
+    "/logout",
+    timeout('2s'),
+    validateToken,
+    catchAsync(logoutController)
+)
 export default router;
