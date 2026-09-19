@@ -9,22 +9,11 @@ const validateToken = async(req, res, next) => {
         logger.warn("No token provided in cookies");
         return responseError(res, 401, "Access token is required", "error", "UNAUTHORIZED");
     }
-
-    // const redisClient = await getRedisClient();
-    const blacklistKey = `blacklistToken:${token}`;
-    const isBlacklisted = await redisClient.get(blacklistKey);
-
-    if (isBlacklisted === "blacklisted") {
-        logger.warn("Blacklisted token attempt detected");
-        return responseError(res, 401, "Token has been revoked", "error", "TOKEN_REVOKED");
-    }
-
+    
     try {
         const decoded = verifyToken(token);
-
         req.user = {
             userID: decoded.userID,
-            email: decoded.email,
             role: decoded.role
         };
 

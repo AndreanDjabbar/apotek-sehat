@@ -3,13 +3,11 @@ import { JWT_EXPIRES_IN, JWT_SECRET } from './env.util.js';
 
 export const generateJWTToken = ({
     userID,
-    email,
     role
 }) => {
     const payload = {
         userID,
-        email,
-        role,
+        role
     };
 
     return jwt.sign(payload, JWT_SECRET, {
@@ -20,8 +18,8 @@ export const generateJWTToken = ({
 
 export const verifyToken = (token) => {
     try {
-        return jwt.verify(token, PUBLIC_KEY, {
-            algorithms: ['RS256'],
+        return jwt.verify(token, JWT_SECRET, {
+            algorithms: ['HS256'],
         });
     } catch (error) {
         if (error.name === 'TokenExpiredError') {
