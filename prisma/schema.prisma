@@ -17,19 +17,13 @@ datasource db {
 model User {
   id            Int      @id @default(autoincrement())
   name          String      @db.VarChar(100)
-  email         String      @db.VarChar(255)
+  email         String      @unique @db.VarChar(255)
   username      String      @unique @db.VarChar(30)
   password      String
-  role          Role
+  role          String
   is_verified   Boolean     @default(false)
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
 
   @@map("user")
-}
-
-enum Role {
-  DEVELOPER
-  ADMIN
-  STAFF
 }
